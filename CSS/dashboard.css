@@ -1,4 +1,6 @@
-/* الأساسيات */
+/* ========================================
+   RESET والأنماط الأساسية
+======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -12,14 +14,18 @@ body {
     line-height: 1.6;
 }
 
-/* الحاوية الرئيسية */
+/* ========================================
+   الحاوية الرئيسية للوحة التحكم
+======================================== */
 #dashboardMainContainer {
     display: flex;
     min-height: 100vh;
     transition: all 0.3s ease;
 }
 
-/* ========== الشريط الجانبي ========== */
+/* ========================================
+   الشريط الجانبي (Sidebar)
+======================================== */
 .dashboard.sidebar {
     width: 20%;
     background: linear-gradient(160deg, #ff6a00 30%, #cc5500 100%);
@@ -33,7 +39,8 @@ body {
     z-index: 1000;
 }
 
-.dashboard.Logo {
+/* شعار اللوحة */
+.dashboard-logo {
     font-size: 2.2rem;
     font-weight: 700;
     margin: 1rem 0 2rem;
@@ -46,7 +53,7 @@ body {
     text-align: center;
 }
 
-.dashboard.Logo::after {
+.dashboard-logo::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -81,7 +88,7 @@ body {
     font-weight: 500;
 }
 
-/* قوائم التنقل */
+/* قوائم التنقل في الشريط الجانبي */
 .dashboard.sidebar_menus ul {
     list-style: none;
     width: 100%;
@@ -122,8 +129,14 @@ body {
     z-index: 2;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
+    transition: background 0.3s ease;
 }
 
+.dashboard.sidebar_menus ul li a:hover {
+    background: #444;
+}
+
+/* أيقونات القوائم */
 .menuIcons {
     font-size: 1.3rem;
     min-width: 35px;
@@ -139,7 +152,29 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* المحتوى الرئيسي */
+/* تمييز العنصر النشط */
+.menuActive > a {
+    background: #555;
+}
+
+/* القوائم الفرعية */
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+}
+
+.submenu li a {
+    padding: 8px;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin: 5px 0;
+}
+
+/* ========================================
+   المحتوى الرئيسي
+======================================== */
 .dashboard_content_container {
     width: 80%;
     padding: 1.5rem;
@@ -148,6 +183,7 @@ body {
     transition: all 0.3s ease;
 }
 
+/* شريط التنقل العلوي */
 .dashboard.topNav {
     display: flex;
     justify-content: space-between;
@@ -171,6 +207,7 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* منطقة المحتوى */
 .dashboard.content {
     flex: 1;
     padding: 1.5rem;
@@ -182,7 +219,9 @@ body {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* الرسوم المتحركة */
+/* ========================================
+   الرسوم المتحركة
+======================================== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -194,79 +233,9 @@ body {
     }
 }
 
-/* التصميم المتجاوب */
-@media (max-width: 1200px) {
-    .dashboard.sidebar {
-        width: 80px !important;
-        padding: 1rem 0.5rem;
-    }
-    
-    .dashboard.Logo {
-        font-size: 1.6rem;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        margin: 0.5rem 0;
-        padding-bottom: 0;
-    }
-    
-    .dashboard.Logo::after {
-        display: none;
-    }
-    
-    .dashboard.sidebar_user img {
-        width: 60px !important;
-        height: 60px !important;
-    }
-    
-    .menuText {
-        opacity: 0;
-        position: absolute;
-        left: 120%;
-        white-space: nowrap;
-        background: #ff6a00;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        pointer-events: none;
-        transition: all 0.3s ease;
-    }
-    
-    .dashboard.sidebar:hover .menuText {
-        opacity: 1;
-        left: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    #dashboardMainContainer {
-        flex-direction: column;
-    }
-    
-    .dashboard.sidebar {
-        width: 100% !important;
-        height: auto;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 1rem;
-    }
-    
-    .dashboard.Logo {
-        writing-mode: horizontal-tb;
-        transform: none;
-        font-size: 1.8rem;
-        margin: 0;
-    }
-    
-    .dashboard.sidebar_user {
-        display: none;
-    }
-    
-    .dashboard_content_container {
-        width: 100%;
-        padding: 1rem;
-    }
-}
-
-/* الإشعارات العائمة */
+/* ========================================
+   الإشعارات العائمة
+======================================== */
 .floating-notification {
     position: fixed;
     bottom: -50px;
@@ -290,7 +259,9 @@ body {
     background: #f44336;
 }
 
-/* ========== تنسيق العنوان الترحيبي ========== */
+/* ========================================
+   عناوين ورسائل عامة
+======================================== */
 .welcome-title {
     font-size: 24px;
     font-weight: 700;
@@ -299,7 +270,6 @@ body {
     text-align: center;
 }
 
-/* ========== تنسيق رسالة النجاح/الخطأ ========== */
 .responseMassage {
     margin: 1rem auto;
     max-width: 600px;
@@ -326,8 +296,9 @@ body {
     border: 1px solid #dc3545;
 }
 
-/* ========== نموذج إضافة المستخدم ========== */
-/* ملاحظة: أزلنا margin: 2rem auto; و max-width: 500px; لضمان أخذ مساحة العمود */
+/* ========================================
+   نماذج الإدخال (Forms)
+======================================== */
 .appForm {
     background-color: #2d2d2d;
     padding: 1.5rem;
@@ -380,11 +351,12 @@ body {
     background: #cc5500;
 }
 
-/* ========== الأسطر والأعمدة ========== */
+/* ========================================
+   تخطيط الأعمدة والصفوف (Grid Layout)
+======================================== */
 .row {
     display: flex;
-    /* لإبقاء الأعمدة جنبًا إلى جنب وعدم التفافها */
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
     justify-content: space-between;
     gap: 1rem;
     margin-bottom: 1rem;
@@ -403,7 +375,9 @@ body {
     flex: 0 0 58.33%;
 }
 
-/* تنسيق الجدول */
+/* ========================================
+   تنسيق الجداول
+======================================== */
 .users table,
 .users table th,
 .users table td {
@@ -422,21 +396,116 @@ body {
     text-align: center;
 }
 
-
+/* ========================================
+   تخصيص SweetAlert2
+======================================== */
 .swal2-popup {
-    background: #161616 !important; /* خلفية سوداء */
-    color: #fff !important;      /* نص أبيض */
+    background: #161616 !important;
+    color: #fff !important;
     font-family: 'Tajawal', sans-serif;
 }
-.swal2-title {
-    color: #fff !important;
-}
+.swal2-title,
 .swal2-html-container {
     color: #fff !important;
 }
-.custom-trash-icon{
+
+/* ========================================
+   تخصيص أيقونات خاصة
+======================================== */
+.custom-trash-icon {
     color: #ff8011;
 }
-.custom-edit-icon{
+.custom-edit-icon {
     color: #ffffff;
+}
+
+/* ========================================
+   التصميم المتجاوب (Responsive)
+======================================== */
+/* شاشات حتى 1200px */
+@media (max-width: 1200px) {
+    .dashboard.sidebar {
+        width: 80px !important;
+        padding: 1rem 0.5rem;
+    }
+    
+    .dashboard-logo {
+        font-size: 1.6rem;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        margin: 0.5rem 0;
+        padding-bottom: 0;
+    }
+    
+    .dashboard-logo::after {
+        display: none;
+    }
+    
+    .dashboard.sidebar_user img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .menuText {
+        opacity: 0;
+        position: absolute;
+        left: 120%;
+        white-space: nowrap;
+        background: #ff6a00;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+    
+    .dashboard.sidebar:hover .menuText {
+        opacity: 1;
+        left: 100%;
+    }
+}
+
+/* شاشات حتى 768px */
+@media (max-width: 768px) {
+    #dashboardMainContainer {
+        flex-direction: column;
+    }
+    
+    .dashboard.sidebar {
+        width: 100% !important;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    
+    .dashboard-logo {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1.8rem;
+        margin: 0;
+    }
+    
+    .dashboard.sidebar_user {
+        display: none;
+    }
+    
+    .dashboard_content_container {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
+.productTextAreaInput{
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #555;
+    border-radius: 6px;
+    background-color: #1e1e1e;
+    color: #fff;
+    transition: border 0.3s ease;
+}
+
+.productTextAreaInput{
+    height: 100px;
+    
 }
